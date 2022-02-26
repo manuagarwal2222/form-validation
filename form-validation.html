@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+    <style>
+        body{
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+        }
+        #form-container{
+            background-color: white;
+            padding:50px;
+            text-align:center;
+            
+        }
+        h2{
+            margin:0px 0px 10px 0px;
+        }
+        input{
+            width:200px;
+            margin:10px 0px;
+            padding:10px;
+        }
+        input[type="submit"]{
+            width:224px;
+            background-color:green;
+            border: 0px;
+            color: white;
+        }
+        .error{
+            color: red;
+            margin:0px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <h2>login</h2>
+        <form action="" onsubmit="return validateform()">
+            <!-- <label for="first-name">enter your user-name:</label> -->
+            <input type="text" placeholder="user-name" id="user-name"><br>
+            <p id="usererror" class="error"></p>
+            <!-- <label for="password">enter your password:</label> -->
+            <input type="password" placeholder="password" id="password"><br>
+            <p id="passworderror" class="error"></p>
+            <input type="submit">
+        </form>
+    </div>
+    <script>
+        let userName = document.getElementById("user-name");
+        let password = document.getElementById("password");
+        let flag1 = 1;
+        let flag2 = 1;
+        function validateform(){
+            if(userName.value == ""){
+                let usererror = document.getElementById("usererror");
+                usererror.innerHTML = "username is empty";
+                flag1 = 0;
+            }else if(userName.value.length < 3){
+                let usererror = document.getElementById("usererror");
+                usererror.innerHTML = "username is required min 3 character"
+                flag1 = 0;
+            }else {
+                document.getElementById("usererror").innerHTML = ""
+                flag1 = 1;
+            }
+            if(password.value == ""){
+                let passworderror = document.getElementById("passworderror");
+                passworderror.innerHTML = "password is empty";
+                flag2 = 0;
+            }else{
+                document.getElementById("passworderror").innerHTML = "";
+                flag2 = 1;
+            }
+            if(flag1 && flag2){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
